@@ -23,7 +23,7 @@ The above workbench was very helpful in getting me started with Docker, but I wa
 ## Run it
 From the project directory run the command 
 ```docker-compose up -d```
-This will download the images and start the containers and link them together exposing port 80 on your docker-machine. The ROOT webapp at this point only outputs the "container" id and internal IP to demonstrate that NGINX is balancing the traffic.
+This will download the images and start the containers and link them together exposing port 80 on your docker-machine. The ROOT webapp at this point only outputs the "container id" and internal IP to demonstrate that NGINX is balancing the traffic.
 
 ### The `docker-compose.yml` file
 ```yaml
@@ -68,7 +68,7 @@ lucee3:
 	* We mount our default nginx configuration for the localhost `default.conf`
 	* Then we link the lb container with the 3 Lucee containers
 * Each Lucee container is based off one of the official [Lucee Docker Images](https://hub.docker.com/u/lucee/) in this case the latest version 4 image.
-* We sync our Server.xml file which defines our cluster membership Ramki once again for his Tomcat and NGINX tutorials.
+* We sync our Server.xml file which defines our cluster membership. Thanks Ramki once again for his Tomcat and NGINX tutorials.
 *
 
 ### Feedback desired
