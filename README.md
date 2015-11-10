@@ -1,4 +1,4 @@
-# Docker Lucee Cluster using docker-compose
+## Docker Lucee Cluster using docker-compose
 
 This repository is a seed project to get [Lucee](http://lucee.org/) running as a cluster behind [NGINX](https://www.nginx.com/) acting as a loadbalancer within docker containers.
 
