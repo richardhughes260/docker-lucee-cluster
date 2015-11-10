@@ -1,30 +1,31 @@
-# DOCKER-COMPOSE run lucee in a cluster behind NGINX
+# Docker Lucee Cluster using docker-compose
 
 This repository is a seed project to get [Lucee](http://lucee.org/) running as a cluster behind [NGINX](https://www.nginx.com/) acting as a loadbalancer within docker containers.
 
 The Lucee Docker image used is available on Docker Hub: https://hub.docker.com/u/lucee/
 
-## Big Thanks to Ramki Krishnnan
+### Big Thanks to Ramki Krishnnan
 This repo is heavily based on this blog post: http://www.ramkitech.com/2015/10/docker-tomcat-clustering.html His videos and posts on Tomcat clustering and loadbalancing on NGINX were very helpful as well.
 
-## Lucee Base Images
+### Lucee Base Images
 Lucee provides a number of different base images for your Lucee Docker containers to run your project. This project aims to use `docker-machine` and `docker-compose` to manage the docker containers as an alternative to the very helpful project by [Geoff Bowers](https://github.com/modius) which combines Vagrant/Docker: [Lucee Docker Workbench](https://github.com/modius/lucee-docker-workbench).
 
-The above workbench was very helpful in getting me started with Docker, but I wanted to use `docker-compose` to start up my app locally on VirtualBox on my `docker-machine`. The `yaml` configuration just seemed so clean compared to the vagrant approach, but I'm sure both have their merits. I also want to better understand his [tutum-prod.yml](https://github.com/modius/lucee-docker-workbench/blob/master/tutum-prod.yml) yaml files a bit better as well since [Tutum](http://tutum.co/) provides the ability to scale your services using an almost nearly identical syntax to `docker-compose`.
+The above workbench was very helpful in getting me started with Docker, but I wanted to use `docker-compose` to start up my app locally, on VirtualBox, using `docker-machine`. The `yaml` configuration surrounding docker-compose was easiers for me to grasp than the vagrant approach, but I'm sure both have their merits. I also want to better understand Geoff's [tutum-prod.yml](https://github.com/modius/lucee-docker-workbench/blob/master/tutum-prod.yml) yaml files a bit more as well since [Tutum](http://tutum.co/) provides the ability to scale your services. This uses an almost nearly identical syntax to `docker-compose`. I also want/need to better understand how to handle environment level configuration / overrides to really make this a useful workflow.
 
-## USAGE START
+### Pre-requisites
 
 * Install DockerToolbox
-* Ensure a docker machine created and running.
+* Ensure a docker machine is created and running.
 * Be sure your docker-machine is active and that you've set the docker machine environment variables by following the instructions after running the `docker-machine env machine-name-here` command.
 * You can check the docker-machine is active by running the command `docker-machine active` and it will output the name of the active docker-machine
+* `docker-machine ip machine-name-here` will give you the IP your `lb` service is running on.
 
-## The `docker-compose.yml` file
+### The `docker-compose.yml` file
 ```yaml
 lb:
   image: nginx
   ports:
-   - "8080:80"
+   - "80:80"
   volumes:
    - ./cluster/default.conf:/etc/nginx/conf.d/default.conf
   links:
@@ -65,7 +66,7 @@ lucee3:
 * We sync our Server.xml file which defines our cluster membership Ramki once again for his Tomcat and NGINX tutorials.
 *
 
-### Please give feedback
+### Feedback desired
 This is a first go around trying to put Docker to work so please let me know if there are areas that can be done more efficiently and correctly. I assume I'm missing quite a few things in terms of "configuring" Lucee.
 
 Thanks!
