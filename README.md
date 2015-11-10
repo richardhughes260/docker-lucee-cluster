@@ -58,12 +58,12 @@ lucee3:
 ***
 ##### Notes on volumes: 
 * Docker machine auto mounts your users folder allowing you to do relative pathing in relation to your `docker-compose.yml` file. You can mount any folder using a full path as long as it's shared and properly mounted on the `docker-machine` VM. 
-* On Windows paths would be something like `/c/Users/engage/sites/yourClusterProject` 
+* On Windows paths would be something like `/c/Users/yourusername/sites/yourClusterProject` 
 * I beleive on Mac it would be the same minus the `/c/..` portion. 
 * You can manually share other folders with the Virtualbox instance and mount them within the VM, but I found that to be more trouble than it's worth. It's best to make sure you are running your project out of somewhere in your `/Users/` folder for now until they make this more robust via the `docker-machine` command.
 
 ### Reviewing the `docker-compose.yml` file
-* The outer most level define the services. In our case we have a loadbalancer `lb` and 3 lucee services `luceeOne luceeTwo luceeThree`
+* The outer most level define the services. In our case we have a loadbalancer `lb` and 3 lucee services `lucee1 lucee2 lucee3`
 * The `lb` is based on the offical nginx image and exposes 80
 	* We mount our default nginx configuration for the localhost `default.conf`
 	* Then we link the lb container with the 3 Lucee containers
