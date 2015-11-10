@@ -20,6 +20,11 @@ The above workbench was very helpful in getting me started with Docker, but I wa
 * You can check the docker-machine is active by running the command `docker-machine active` and it will output the name of the active docker-machine
 * `docker-machine ip machine-name-here` will give you the IP your `lb` service is running on.
 
+## Run it
+From the project directory run the command 
+```docker-compose up -d```
+This will download the images and start the containers and link them together exposing port 80 on your docker-machine. The ROOT webapp at this point only outputs the "container" id and internal IP to demonstrate that NGINX is balancing the traffic.
+
 ### The `docker-compose.yml` file
 ```yaml
 lb:
